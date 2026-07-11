@@ -1,48 +1,33 @@
-// Menü linklerine yumuşak kaydırma
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
+const navLinks = document.querySelectorAll("nav a");
 
-        const target = document.querySelector(this.getAttribute('href'));
+navLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
 
-        if(target){
-            target.scrollIntoView({
-                behavior:'smooth'
+        const targetId = link.getAttribute("href");
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+            targetSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
             });
         }
     });
 });
 
-// Sayfa yüklendiğinde animasyon
-window.addEventListener('load', () => {
-
-    document.body.style.opacity = "0";
-
-    setTimeout(() => {
-
-        document.body.style.transition = "opacity 1s";
-
-        document.body.style.opacity = "1";
-
-    },100);
-
+window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
 });
 
-// Buton animasyonu
-const button = document.querySelector('.hero a');
+const heroButton = document.querySelector(".hero a");
 
-if(button){
-
-    button.addEventListener('mouseenter',()=>{
-
-        button.style.transform="scale(1.08)";
-
+if (heroButton) {
+    heroButton.addEventListener("mouseenter", () => {
+        heroButton.style.transform = "translateY(-4px) scale(1.04)";
     });
 
-    button.addEventListener('mouseleave',()=>{
-
-        button.style.transform="scale(1)";
-
+    heroButton.addEventListener("mouseleave", () => {
+        heroButton.style.transform = "translateY(0) scale(1)";
     });
-
 }
